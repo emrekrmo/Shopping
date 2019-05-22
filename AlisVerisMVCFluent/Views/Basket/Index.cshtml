@@ -1,0 +1,67 @@
+﻿@using Entity
+@model Sepet
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Available</th>
+                            <th scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Urunler != null && Model.Urunler.Count != 0)
+                        {
+                            foreach (var item in Model.Urunler)
+                            {
+                            <tr>
+                                <td><img src="~/Content/product/@Html.Raw(item.Urun.UrunId + ".jpg")" /> </td>
+                                <td>@item.Urun.UrunAdi</td>
+                                <td>In stock</td>
+                                <td><input class="form-control" type="text" value="@item.Adet" disabled/></td>
+                                <td class="text-right">@item.Fiyat.ToString("C")</td>
+                                <td class="text-right"><a href="/Basket/Remove?productId=@item.UrunId" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
+                            </tr>
+                            }
+                        }
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Ara Toplam</td>
+                            <td class="text-right">@Model.AraToplam.ToString("C")</td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>@Model.AraToplam.ToString("C")</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <a href="/" class="btn btn-block btn-light">Alışverişe devam et</a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
